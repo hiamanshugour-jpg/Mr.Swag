@@ -1,0 +1,36 @@
+
+<!-- ENROLL MODAL - Add after feedback modal -->
+<div class="modal-overlay" id="enrollModal">
+  <div class="modal" style="max-width: 500px;">
+    <button class="modal-close" onclick="closeEnrollModal()">✕</button>
+    <h2>Workshop Enrollment Form</h2>
+    <p>Complete your registration for the workshop.</p>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="enroll-name" placeholder="Enter your full name">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="enroll-email" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="enroll-phone" placeholder="+91 1234567890">
+    </div>
+    <div class="form-group">
+      <label>Workshop Mode</label>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.95rem;">
+          <input type="radio" name="workshop-mode" value="offline">
+          <span>🏠 Offline</span>
+        </label>
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.95rem;">
+          <input type="radio" name="workshop-mode" value="online">
+          <span>💻 Online</span>
+        </label>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="submitEnrollment()" style="width: 100%; margin-top: 10px;">Complete Enrollment</button>
+  </div>
+</div>
+

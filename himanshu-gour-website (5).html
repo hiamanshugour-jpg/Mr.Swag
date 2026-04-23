@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Himanshu Gour – Public Speaker</title>
+family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0A0A0F;
+    --dark2: #12121A;
+    --dark3: #1C1C28;
+    --text: #F0EDE8;
+    --muted: #8A8799;
+    --accent: #C9A84C;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-follower {
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.25s ease, width 0.2s, height 0.2s;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--gold), #8B6914);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: #0A0A0F;
+    letter-spacing: -1px;
+  }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+
+  /* 3-dot menu */
+  .menu-btn {
+    position: relative;
+    background: none; border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex; flex-direction: column; gap: 5px;
+    align-items: center;
+  }
+  .menu-btn span {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .menu-btn:hover span { transform: scale(1.3); }
+
+  .dropdown {
+    position: absolute;
+    top: 56px; right: 0;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 14px;
+    min-width: 180px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+  .dropdown.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .dropdown a {
+    display: block;
+    padding: 14px 22px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, color 0.2s, padding-left 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .dropdown a:last-child { border-bottom: none; }
+  .dropdown a:hover {
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    padding-left: 28px;
+  }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+
+  .hero-grid-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-text { animation: fadeUp 0.9s ease both; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+.hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: #ff4444;
+    border-radius: 50%;
+    display: block;
+    animation: pulse 2s infinite;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+  h1 span { color: var(--gold); }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 460px;
+    font-weight: 400;
+  }
+
+  .hero-roles {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-bottom: 2.5rem;
+  }
+  .role-pill {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 100px;
+    padding: 7px 18px;
+    font-size: 0.82rem;
+    color: var(--gold-light);
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  .cta-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), #8B6914);
+    color: #0A0A0F;
+    border: none;
+    border-radius: 100px;
+    padding: 14px 32px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(201,168,76,0.35);
+  }
+
+  .btn-ghost {
+    background: none;
+    color: var(--text);
+    border: 1px solid rgba(240,237,232,0.2);
+    border-radius: 100px;
+    padding: 13px 28px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  /* Hero Photo */
+  .hero-photo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .photo-outer {
+    position: relative;
+    width: 380px; height: 460px;
+  }
+
+  .photo-ring {
+    position: absolute;
+    inset: -18px;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 200px 200px 200px 200px / 220px 220px 180px 180px;
+    animation: spin 18s linear infinite;
+  }
+  .photo-ring::before {
+    content: '';
+    position: absolute;
+    top: 18px; right: -4px;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .photo-frame {
+    width: 100%; height: 100%;
+    border-radius: 180px 180px 140px 140px;
+    overflow: hidden;
+    border: 2px solid rgba(201,168,76,0.3);
+    position: relative;
+    background: var(--dark3);
+  }
+
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: linear-gradient(160deg, #1C1C28 0%, #12121A 100%);
+    gap: 12px;
+  }
+
+  .avatar-icon {
+    width: 110px; height: 110px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.05));
+    border-radius: 50%;
+    border: 2px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gold);
+  }
+
+  .photo-name-badge {
+    text-align: center;
+    padding: 0 20px;
+  }
+  .photo-name-badge h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .photo-name-badge p {
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.8px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .floating-stat {
+    position: absolute;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 14px;
+    padding: 12px 18px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .floating-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .floating-stat .lbl {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .stat-1 { bottom: 30px; left: -40px; animation: float 4s ease-in-out infinite; }
+  .stat-2 { top: 40px; right: -35px; animation: float 4s 1.5s ease-in-out infinite; }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--gold);
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .section-title span { color: var(--gold); }
+
+  /* ABOUT */
+  #about { padding: 7rem 3rem; }
+  .about-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-left {}
+
+  .about-img-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 24px;
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-img-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 30%, rgba(201,168,76,0.08), transparent 60%);
+  }
+
+  .about-avatar {
+    width: 100px; height: 100px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.25), rgba(201,168,76,0.05));
+    border-radius: 50%;
+    border: 2px solid rgba(201,168,76,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    position: relative;
+  }
+
+  .about-img-frame h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--text);
+    position: relative;
+  }
+  .about-img-frame p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+    position: relative;
+    padding: 0 1.5rem;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.85;
+    font-size: 1.02rem;
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 2rem;
+  }
+  .feature-card {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 14px;
+    padding: 1.2rem;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .feature-card:hover {
+    border-color: rgba(201,168,76,0.35);
+    transform: translateY(-3px);
+  }
+  .feature-icon {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .feature-card h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .feature-card p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+/* WORKSHOPS */
+  #workshops { padding: 7rem 3rem; background: var(--dark2); }
+  .workshops-inner { max-width: 1200px; margin: 0 auto; }
+
+  .workshops-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+
+  .workshop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .workshop-grid { 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .workshop-grid { 
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  .workshop-card {
+    background: var(--dark);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.35s ease, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+  }
+
+  /* Workshop Dynamic Styles */
+  .workshop-action {
+    margin-top: 14px;
+  }
+
+  .enroll-btn, .enrolled-btn {
+    width: 100%;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .enroll-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(201,168,76,0.3);
+  }
+
+  .enrolled-btn {
+    background: linear-gradient(135deg, #4CB88D, #3A9A73) !important;
+  }
+
+  .progress-container {
+    background: var(--dark3);
+    border-radius: 8px;
+    height: 8px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), #4CB88D);
+    border-radius: 8px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(201,168,76,0.4);
+  }
+
+  .countdown-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  .countdown-timer {
+    background: rgba(201,168,76,0.12);
+    color: var(--gold);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-width: 90px;
+    text-align: center;
+    animation: pulse 2s infinite;
+  }
+
+  @media (max-width: 900px) {
+    .countdown-container {
+      flex-direction: column;
+      gap: 4px;
+      align-items: flex-start;
+    }
+  }
+  .workshop-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(201,168,76,0.35);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  }
+  .workshop-card:hover .workshop-thumb img {
+    transform: scale(1.08);
+  }
+
+  .workshop-thumb {
+    height: 190px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .w-thumb-1 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+  .w-thumb-2 { background: linear-gradient(135deg, #0d1117 0%, #1a1a2e 100%); }
+  .w-thumb-3 { background: linear-gradient(135deg, #1a0a00 0%, #2d1500 100%); }
+
+  .workshop-thumb-icon {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 0 20px rgba(201,168,76,0.4));
+    transition: transform 0.3s;
+  }
+  .workshop-card:hover .workshop-thumb-icon { transform: scale(1.15); }
+
+  .workshop-thumb-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .workshop-card:hover .workshop-thumb-glow { opacity: 1; }
+
+  .workshop-tag {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  .workshop-body { padding: 1.4rem; }
+  .workshop-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .workshop-body p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .workshop-meta {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.78rem;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .workshop-meta span { color: var(--muted); font-weight: 400; }
+
+  /* CONTACT */
+  #contact { padding: 7rem 3rem; }
+  .contact-inner { max-width: 1200px; margin: 0 auto; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .contact-info p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 14px;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+    font-size: 0.9rem;
+  }
+  .contact-link:hover { border-color: var(--gold); transform: translateX(4px); }
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    background: rgba(201,168,76,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-form {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 24px;
+    padding: 2.5rem;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--dark);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 13px 16px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { height: 110px; resize: none; }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted); }
+
+  /* SOCIAL + FOOTER */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 3.5rem 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .social-row {
+    display: flex; gap: 14px;
+  }
+  .social-btn {
+    width: 48px; height: 48px;
+    background: var(--dark);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 1.1rem;
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .social-btn:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .footer-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(201,168,76,0.08);
+  }
+
+  .footer-bottom {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    text-align: center;
+  }
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .footer-bottom .built-by {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* FEEDBACK MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+    backdrop-filter: blur(6px);
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 24px;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 480px;
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.3s;
+  }
+  .modal-overlay.open .modal { transform: scale(1) translateY(0); }
+  .modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .modal p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .modal-close {
+    float: right;
+    background: none; border: none;
+    color: var(--muted);
+    font-size: 1.4rem;
+    cursor: pointer;
+    margin-top: -0.5rem;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+    .photo-outer { width: 280px; height: 340px; }
+    .about-wrap { grid-template-columns: 1fr; gap: 3rem; }
+    .workshop-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.5rem; }
+    #home { padding: 6rem 1.5rem 3rem; }
+    .workshops-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+
+  .blink-dot {
+    color: red;
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="logo">
+    <div class="logo-icon">MS</div>
+    <span class="logo-name">Mr. Swag</span>
+  </a>
+  <div style="position:relative;">
+    <button class="menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="dropdown" id="dropdown">
+      <a href="#about">About</a>
+      <a href="#" onclick="openFeedback()">Feedback</a>
+      <a href="#contact">Contact Us</a>
+      <a href="modules.html">Workshop Modules</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" style="max-width:100%; padding: 7rem 3rem 4rem;">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">Available for Workshops</div>
+      <h1>Himanshu<br><span>Gour</span></h1>
+      <p class="hero-tagline">Empowering voices, building confidence, and spreading cybersecurity awareness — one workshop at a time.</p>
+      <div class="hero-roles">
+        <span class="role-pill">Public Speaker</span>
+        <span class="role-pill">Cybersecurity Trainer</span>
+        <span class="role-pill">Confidence Builder</span>
+      </div>
+      <div class="cta-row">
+        <a href="#workshops" class="btn-primary">Explore Workshops</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="photo-outer">
+        <div class="photo-ring"></div>
+        <div class="photo-frame">
+          <img src="photos%20&%20video%20&%20icons/Main%20photo2.jpeg" alt="Himanshu Gour" style="width:100%; height:100%; object-fit:cover; object-position:top center;">
+        </div>
+        <div class="floating-stat stat-1">
+          <span class="num">4+</span>
+          <span class="lbl">Workshops</span>
+        </div>
+        <div class="floating-stat stat-2">
+          <span class="num">100+</span>
+          <span class="lbl">Lives Touched</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="max-width:100%; padding: 7rem 3rem;">
+  <div class="about-wrap">
+    <div class="about-left reveal">
+      <div style="display:flex; flex-direction:column; gap:18px;">
+
+        <!-- Big quote card -->
+        <div style="background: linear-gradient(135deg, #1C1C28 0%, #12121A 100%); border:1px solid rgba(201,168,76,0.25); border-radius:24px; padding:2.2rem; position:relative; overflow:hidden;">
+          <div style="position:absolute; top:-20px; left:20px; font-size:8rem; color:rgba(201,168,76,0.07); font-family:'Playfair Display',serif; line-height:1; pointer-events:none;">"</div>
+          <p style="font-family:'Playfair Display',serif; font-size:1.15rem; color:var(--text); line-height:1.7; position:relative; margin-bottom:1.2rem; font-style:italic;">
+            If you feel shy, awkward, or underconfident—this is where you change that, step by step.
+          </p>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,#C9A84C,#8B6914); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:900; font-size:0.85rem; color:#0A0A0F;">HG</div>
+            <div>
+              <p style="font-size:0.88rem; font-weight:600; color:var(--gold); margin:0;">Himanshu Gour</p>
+              <p style="font-size:0.75rem; color:var(--muted); margin:0;">Public Speaker</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats row -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div style="background:var(--dark2); border:1px solid rgba(201,168,76,0.15); border-radius:18px; padding:1.4rem; text-align:center;">
+            <p style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--gold); margin:0 0 4px;">5+</p>
+            <p style="font-size:0.78rem; color:var(--muted); margin:0; text-transform:uppercase; letter-spacing:1px;">Workshops</p>
+          </div>
+          <div style="background:var(--dark2); border:1px solid rgba(201,168,76,0.15); border-radius:18px; padding:1.4rem; text-align:center;">
+            <p style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--gold); margin:0 0 4px;">100+</p>
+            <p style="font-size:0.78rem; color:var(--muted); margin:0; text-transform:uppercase; letter-spacing:1px;">Lives Impacted</p>
+          </div>
+          <div style="background:var(--dark2); border:1px solid rgba(201,168,76,0.15); border-radius:18px; padding:1.4rem; text-align:center;">
+            <p style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--gold); margin:0 0 4px;">3+</p>
+            <p style="font-size:0.78rem; color:var(--muted); margin:0; text-transform:uppercase; letter-spacing:1px;">Years Experience</p>
+          </div>
+          <div style="background:var(--dark2); border:1px solid rgba(201,168,76,0.15); border-radius:18px; padding:1.4rem; text-align:center;">
+            <p style="font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--gold); margin:0 0 4px;">100%</p>
+            <p style="font-size:0.78rem; color:var(--muted); margin:0; text-transform:uppercase; letter-spacing:1px;">Passion Driven</p>
+          </div>
+        </div>
+
+        <!-- Expertise tags -->
+        <div style="background:var(--dark2); border:1px solid rgba(201,168,76,0.15); border-radius:18px; padding:1.4rem;">
+          <p style="font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px; font-weight:600;">Areas of Expertise</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); color:var(--gold-light); font-size:0.8rem; padding:5px 14px; border-radius:100px;">🎤 Public Speaking</span>
+            <span style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); color:var(--gold-light); font-size:0.8rem; padding:5px 14px; border-radius:100px;">🔐 Cybersecurity</span>
+            <span style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); color:var(--gold-light); font-size:0.8rem; padding:5px 14px; border-radius:100px;">💡 Confidence</span>
+            <span style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); color:var(--gold-light); font-size:0.8rem; padding:5px 14px; border-radius:100px;">🌍 Awareness</span>
+            <span style="background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25); color:var(--gold-light); font-size:0.8rem; padding:5px 14px; border-radius:100px;">🚀 Leadership</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Transform Your Confidence<br><span>Transform Your Life.</span></h2>
+      <p>Hi, I’m Himanshu Gour, a Personality Development Trainer dedicated to help individuals build confidence, improve communication, and grow into their best version.In today’s fast-moving world, success is not just about knowledge—it’s about how you present yourself, communicate, and handle real-life situations. Through my courses and workshops, I provide practical, step-by-step guidance to help you overcome self-doubt, develop strong communication skills, and build a confident personality.</p>
+      <p>Whether you’re a student, job seeker, or someone looking to improve personally and professionally, this platform is designed to support your growth journey.</p>
+      <div class="about-features">
+        <div class="feature-card">
+          <span class="feature-icon">🎤</span>
+          <h4>Public Speaking</h4>
+          <p>Engaging talks that inspire and inform audiences of all sizes.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔐</span>
+          <h4>Cyber Awareness</h4>
+          <p>Practical training to help people stay safe online.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">💡</span>
+          <h4>Confidence Building</h4>
+          <p>Workshops designed to unlock potential and build inner strength.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🌍</span>
+          <h4>Real-World Impact</h4>
+          <p>Sessions that create lasting change beyond the classroom.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSHOPS -->
+<div id="workshops" style="background: var(--dark2); padding: 0;">
+  <section style="max-width:1200px; margin:0 auto; padding: 7rem 3rem;">
+    <div class="workshops-inner">
+      <div class="workshops-header reveal">
+        <div>
+          <div class="section-label">What I Offer</div>
+          <h2 class="section-title">Workshops <span>Delivered</span></h2>
+        </div>
+        <a href="#contact" class="btn-ghost">Book a Session</a>
+
+      </div>
+<div class="workshop-grid">
+        <div class="workshop-card reveal" data-workshop-id="1" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/Topic%20coming%20soon.png"  style="width:100%; height:100%; object-fit: contain; background: var(--dark2); transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <div style="position:absolute; top:14px; left:14px; color: var(--gold); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;"><span class="blink-dot">●</span> Upcoming Workshop</div>
+            <div style="position:absolute; bottom:14px; left:14px; right:14px; color: var(--gold); font-size: 0.75rem; line-height: 1.4;">
+              <div>Date: <span id="workshop1-date"></span></div>
+              <div>Start: <span id="workshop1-start"></span></div>
+              <div>End: <span id="workshop1-end"></span></div>
+            </div>
+            <button class="btn-primary" style="position:absolute; bottom:80px; left:50%; transform:translateX(-50%); font-size: 0.8rem; padding: 8px 16px;" onclick="openEnrollmentForm(1)">Enroll Now</button>
+          </div>
+          <div class="workshop-body" style="padding:1.4rem;">
+            <h3>The Art of Public Speaking</h3>
+            <div id="workshop1-timer" style="font-size:0.85rem; color:var(--gold); font-weight:500; margin-bottom:14px;"></div>
+            <div class="workshop-action"></div>
+          </div>
+        </div>
+
+        <div class="workshop-card reveal" data-workshop-id="2" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop2.jpeg" alt="Cybersecurity Workshop Photo" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+          </div>
+        </div>
+
+        <div class="workshop-card reveal" data-workshop-id="3" style="height: 420px;">
+
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop3.jpeg" alt="Confidence Workshop Photo" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+          </div>
+        </div>
+
+        <!-- New Photo-only Workshops 4-13 -->
+
+        <div class="workshop-card reveal" data-workshop-id="4" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop1.jpeg" alt="Workshop 4" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">New</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="5" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop5.jpeg" alt="Workshop 5" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">Live</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="6" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop6.jpeg" alt="Workshop 6" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">Popular</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="7" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop7.jpeg" alt="Workshop 7" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">Featured</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="8" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop8.jpeg" alt="Workshop 8" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">Hot</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="9" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop9.jpeg" alt="Workshop 9" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">Trending</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="10" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop10.jpeg" alt="Workshop 10" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">New</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="11" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop11.jpeg" alt="Workshop 11" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">Live</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="12" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop12.jpeg" alt="Workshop 12" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">Sold Out</span>
+          </div>
+        </div>
+        <div class="workshop-card reveal" data-workshop-id="13" style="height: 420px;">
+          <div class="workshop-thumb" style="position:relative; height:100%; overflow:hidden;">
+            <img src="photos%20&%20video%20&%20icons/workshop4.jpeg" alt="Workshop 13" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease;">
+            <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.2) 60%, transparent 100%);"></div>
+            <span class="workshop-tag">Exclusive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" style="max-width:100%; padding: 7rem 3rem;">
+  <div class="contact-inner">
+    <div class="reveal"> 
+      <div class="section-label">Let's Connect</div>
+      <h2 class="section-title">Book a <span>Workshop</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Ready to make an impact?</h3>
+        <p>Whether you want to book a workshop, collaborate, or just have a conversation — reach out. Himanshu is always happy to connect with curious minds and changemakers.</p>
+        <div class="contact-links">
+          <a href="mailto:hiamanshugour@gmail.com" class="contact-link">
+            <div class="contact-link-icon">📧</div>
+            hiamanshugour@gmail.com
+          </a>
+          <a href="tel:+919340772701" class="contact-link">
+            <div class="contact-link-icon">📞</div>
+            +91 9340772701
+          </a>
+          <a href="#" class="contact-link">
+            <div class="contact-link-icon">📍</div>
+            Madhya Pradesh Gwalior, India
+          </a>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Enter your full name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+91 1234567890">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about your workshop needs..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%; text-align:center;" onclick="submitForm()">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="logo" style="text-decoration:none;">
+      <div class="logo-icon">MS</div>
+      <span class="logo-name">Mr.Swag</span>
+    </div>
+    <div class="social-row">
+      <a href="https://www.linkedin.com/in/himanshu-gour-b23a6235a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-btn" title="LinkedIn">in</a>
+      <a href="https://www.instagram.com/mr_swag_9340?igsh=MWN5enE4aGgxYXRldA==" class="social-btn" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="#" class="social-btn" title="YouTube">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://x.com/mr_swag_701?s=20" class="social-btn" title="Twitter / X">𝕏</a>
+      <a href="https://wa.me/919340772701" class="social-btn" title="WhatsApp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+    </div>
+  </div>
+</footer>
+
+<!-- FEEDBACK MODAL -->
+<div class="modal-overlay" id="feedbackModal">
+  <div class="modal" style="max-width:520px; max-height:90vh; overflow-y:auto;">
+    <button class="modal-close" onclick="closeFeedback()">✕</button>
+    <h2>Share Feedback</h2>
+    <p>Your thoughts help Himanshu grow and improve every workshop.</p>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="fb-name" placeholder="Enter your full name">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="fb-email" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>Your Feedback</label>
+      <textarea id="fb-text" placeholder="Share your experience or suggestion..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Rate Your Experience</label>
+      <div id="star-row" style="display:flex; gap:6px; margin-top:10px; background:rgba(201,168,76,0.05); border:1px solid rgba(201,168,76,0.15); border-radius:14px; padding:14px 16px; align-items:center;">
+        <button type="button" class="star-btn" data-val="1" style="background:none; border:none; font-size:2.2rem; cursor:pointer; color:#3a3a4a; transition:color 0.15s, transform 0.15s; padding:0 4px; line-height:1;">★</button>
+        <button type="button" class="star-btn" data-val="2" style="background:none; border:none; font-size:2.2rem; cursor:pointer; color:#3a3a4a; transition:color 0.15s, transform 0.15s; padding:0 4px; line-height:1;">★</button>
+        <button type="button" class="star-btn" data-val="3" style="background:none; border:none; font-size:2.2rem; cursor:pointer; color:#3a3a4a; transition:color 0.15s, transform 0.15s; padding:0 4px; line-height:1;">★</button>
+        <button type="button" class="star-btn" data-val="4" style="background:none; border:none; font-size:2.2rem; cursor:pointer; color:#3a3a4a; transition:color 0.15s, transform 0.15s; padding:0 4px; line-height:1;">★</button>
+        <button type="button" class="star-btn" data-val="5" style="background:none; border:none; font-size:2.2rem; cursor:pointer; color:#3a3a4a; transition:color 0.15s, transform 0.15s; padding:0 4px; line-height:1;">★</button>
+        <span id="rating-label" style="margin-left:10px; font-size:0.85rem; color:#8A8799; font-weight:500;">Tap a star</span>
+      </div>
+    </div>
+    <button class="btn-primary" style="width:100%;" onclick="submitFeedback()">Submit Feedback</button>
+  </div>
+</div>
+
+<!-- ENROLLMENT MODAL -->
+<div class="modal-overlay" id="enrollModal">
+  <div class="modal" style="max-width: 500px;">
+    <button class="modal-close" onclick="closeEnrollModal()">✕</button>
+    <h2>Workshop Enrollment Form</h2>
+    <p>Complete your registration for the workshop.</p>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="enroll-name" placeholder="Enter your full name">
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="enroll-email" placeholder="your@email.com">
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="enroll-phone" placeholder="+91 1234567890">
+    </div>
+
+    <button class="btn-primary" onclick="submitEnrollment()" style="width: 100%; margin-top: 10px;">Complete Enrollment</button>
+  </div>
+</div>
+
+<!-- FEEDBACK LIST SECTION -->
+<div id="feedback-section" style="background:var(--dark2); padding: 0;">
+
+  <section style="max-width:1200px; margin:0 auto; padding: 5rem 3rem;">
+    <div class="section-label">What People Say</div>
+    <h2 class="section-title" style="margin-bottom:2.5rem;">Feedback & <span>Reviews</span></h2>
+    <div id="feedback-list" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:20px;">
+      <p style="color:var(--muted); font-size:0.95rem; grid-column:1/-1; text-align:center; padding:2rem 0;">No feedback yet. Be the first to share your experience! 🌟</p>
+    </div>
+    
+    <div style="width: 100%; text-align: center; padding: 2rem 0; margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+      <p style="color: var(--gold); font-size: 0.76rem; letter-spacing: 0.3px; margin: 0;">© 2025 Himanshu Gour. All rights reserved.</p>
+      <a href="https://web-dep-website.vercel.app/" target="_blank" style="color: var(--gold); font-weight: 500; font-size: 0.76rem; letter-spacing: 0.5px; font-style: italic; margin: 0.8rem 0 0 0; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-block; cursor: pointer;" onmouseover="this.style.opacity='0.7'; this.style.transform='scale(1.02)'" onmouseout="this.style.opacity='1'; this.style.transform='scale(1)'">Website crafted with care by Anshul Gole</a>
+    </div>
+  </section>
+</div>
+
+<script>
+  // EmailJS Setup - REPLACE WITH YOUR CREDENTIALS from TODO.md
+emailjs.init("1-chWiP42nNOfajho"); // LIVE
+
+  // Helper: Show toast message
+  function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      position: fixed; top: 20px; right: 20px; background: ${type === 'success' ? 'rgba(76,184,141,0.95)' : 'rgba(201,168,76,0.95)'}; 
+      color: #0A0A0F; padding: 16px 24px; border-radius: 12px; font-weight: 600; 
+      font-size: 0.9rem; z-index: 10000; transform: translateX(400px); transition: transform 0.3s ease;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4); backdrop-filter: blur(10px);
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.style.transform = 'translateX(0)', 100);
+    setTimeout(() => {
+      toast.style.transform = 'translateX(400px)';
+      setTimeout(() => document.body.removeChild(toast), 300);
+    }, 4000);
+  }
+
+  // EmailJS send helper
+  async function sendNotification(templateParams) {
+    try {
+await emailjs.send("service_4s17a0c", "template_8s6c8vb", templateParams);
+      return true;
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      return false;
+    }
+  }
+
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const follower = document.getElementById('cursorFollower');
+
+  let mx = 0, my = 0, fx = 0, fy = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+  });
+  function animFollower() {
+    fx += (mx - fx - 18) * 0.12;
+    fy += (my - fy - 18) * 0.12;
+    follower.style.transform = `translate(${fx}px, ${fy}px)`;
+    requestAnimationFrame(animFollower);
+  }
+  animFollower();
+
+  // Menu
+  function toggleMenu() {
+    document.getElementById('dropdown').classList.toggle('open');
+  }
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.menu-btn') && !e.target.closest('.dropdown')) {
+      document.getElementById('dropdown').classList.remove('open');
+    }
+  });
+
+  // Feedback system
+  let currentRating = 0;
+  const ratingLabels = ['','😞 Terrible','😕 Not Good','😐 Okay','😊 Good','🤩 Excellent!'];
+  let feedbacks = JSON.parse(localStorage.getItem('siteFeedbacks')) || [];
+
+  function openFeedback() {
+    document.getElementById('feedbackModal').classList.add('open');
+    document.getElementById('dropdown').classList.remove('open');
+    // reset stars display
+    updateStarDisplay(0);
+  }
+  function closeFeedback() {
+    document.getElementById('feedbackModal').classList.remove('open');
+  }
+  document.getElementById('feedbackModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeFeedback();
+  });
+
+  function updateStarDisplay(val) {
+    document.querySelectorAll('.star-btn').forEach(s => {
+      const v = parseInt(s.getAttribute('data-val'));
+      s.style.color = v <= val ? '#C9A84C' : '#3a3a4a';
+      s.style.transform = v <= val ? 'scale(1.2)' : 'scale(1)';
+    });
+    const lbl = document.getElementById('rating-label');
+    if (lbl) {
+      lbl.textContent = val > 0 ? ratingLabels[val] : 'Tap a star';
+      lbl.style.color = val > 0 ? '#C9A84C' : '#8A8799';
+    }
+  }
+
+  function setRating(val) {
+    currentRating = val;
+    updateStarDisplay(val);
+  }
+
+  // Attach star events after DOM ready
+  function initStars() {
+    document.querySelectorAll('.star-btn').forEach(s => {
+      const v = parseInt(s.getAttribute('data-val'));
+      s.addEventListener('click', () => setRating(v));
+      s.addEventListener('mouseenter', () => updateStarDisplay(v));
+      s.addEventListener('mouseleave', () => updateStarDisplay(currentRating));
+    });
+    updateStarDisplay(0);
+  }
+  // Call immediately and also on modal open
+  document.addEventListener('DOMContentLoaded', initStars);
+  setTimeout(initStars, 100);
+
+  async function submitFeedback() {
+    const name = document.getElementById('fb-name').value.trim();
+    const email = document.getElementById('fb-email').value.trim();
+    const text = document.getElementById('fb-text').value.trim();
+    const btn = event.target;
+
+    if (!name) { showToast('Please enter your name!'); return; }
+    if (!email) { showToast('Please enter your email!'); return; }
+    if (!text) { showToast('Please write your feedback!'); return; }
+    if (!currentRating) { showToast('Please select a star rating!'); return; }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const params = {
+      from_name: name,
+      from_email: email,
+      message: text + ` (Rating: ${ratingLabels[currentRating]})`,
+      workshop: 'User Feedback'
+    };
+
+    const sent = await sendNotification(params);
+    if (sent) {
+      showToast('Feedback sent! Thank you. 🌟');
+    } else {
+      showToast('Email failed but saved locally.', 'error');
+    }
+    // Always save locally (permanent)
+    const fb = {
+      name, email, text,
+      rating: currentRating,
+      date: new Date().toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'})
+    };
+    feedbacks.unshift(fb); // Newest first
+    if (feedbacks.length > 50) feedbacks = feedbacks.slice(0, 50); // Limit storage
+    localStorage.setItem('siteFeedbacks', JSON.stringify(feedbacks));
+    renderFeedbacks();
+
+    // Reset
+    document.getElementById('fb-name').value = '';
+    document.getElementById('fb-email').value = '';
+    document.getElementById('fb-text').value = '';
+    currentRating = 0;
+    updateStarDisplay(0);
+    closeFeedback();
+
+    setTimeout(() => {
+      document.getElementById('feedback-section').scrollIntoView({ behavior: 'smooth' });
+    }, 300);
+    btn.textContent = 'Submit Feedback';
+    btn.disabled = false;
+  }
+
+  function renderFeedbacks() {
+    const list = document.getElementById('feedback-list');
+    if (!list) return;
+    if (feedbacks.length === 0) {
+      list.innerHTML = '<p style="color:var(--muted); font-size:0.95rem; grid-column:1/-1; text-align:center; padding:2rem 0;">No feedback yet. Be the first to share your experience! 🌟</p>';
+      return;
+    }
+    // Show latest 10
+    const recent = feedbacks.slice(0, 10);
+    list.innerHTML = recent.map(fb => {
+      const stars = Array.from({length:5}, (_,i) =>
+        `<span style="color:${i < fb.rating ? '#C9A84C' : '#3a3a4a'}; font-size:1.1rem;">★</span>`
+      ).join('');
+      const initials = fb.name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+      const maskedEmail = fb.email.replace(/(.{2})(.*)(@.*)/, (_, a, b, c) => a + '***' + c);
+      return `
+        <div style="background:var(--dark); border:1px solid rgba(201,168,76,0.15); border-radius:20px; padding:1.5rem; animation:fadeUp 0.5s ease both;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,rgba(201,168,76,0.25),rgba(201,168,76,0.06)); border:1px solid rgba(201,168,76,0.35); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:1rem; color:#C9A84C; flex-shrink:0;">${initials}</div>
+            <div style="flex:1; min-width:0;">
+              <p style="font-weight:600; font-size:0.95rem; color:var(--text); margin:0;">${fb.name}</p>
+              <p style="font-size:0.75rem; color:var(--muted); margin:2px 0 0;">${maskedEmail}</p>
+            </div>
+            <span style="font-size:0.72rem; color:var(--muted); flex-shrink:0;">${fb.date}</span>
+          </div>
+          <div style="margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+            <div>${stars}</div>
+            <span style="font-size:0.8rem; color:#C9A84C; font-weight:600;">${ratingLabels[fb.rating]}</span>
+          </div>
+          <p style="font-size:0.88rem; color:var(--muted); line-height:1.65; margin:0; padding-top:10px; border-top:1px solid rgba(255,255,255,0.05);">${fb.text}</p>
+        </div>`;
+    }).join('');
+  }
+
+  // Contact form submit with EmailJS
+  async function submitForm() {
+    const name = document.querySelector('#contact input[type="text"]').value.trim();
+    const email = document.querySelector('#contact input[type="email"]').value.trim();
+    const phone = document.querySelector('#contact input[type="tel"]').value.trim();
+    const message = document.querySelector('#contact textarea').value.trim();
+    const btn = event.target;
+
+    if (!name || !email || !phone || !message) {
+      showToast('Please fill all fields!', 'error');
+      return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const params = {
+      from_name: name,
+      from_email: email,
+      phone: phone,
+      message: message,
+      workshop: 'General Contact Form'
+    };
+
+    const sent = await sendNotification(params);
+    if (sent) {
+      showToast('Message sent! Check your email for confirmation. 🎤');
+      document.querySelectorAll('#contact input, #contact textarea').forEach(f => f.value = '');
+    } else {
+      showToast('Failed to send. Try again or contact directly.', 'error');
+    }
+
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+  }
+
+  // ================= WORKSHOP SYSTEM =================
+  const workshopsData = [
+    {
+      id: 1,
+      title: 'The Art of Public Speaking',
+      desc: 'Master the fundamentals of effective communication — from stage presence to storytelling. Designed for students and professionals who want to speak with impact.',
+      duration: '2-hour session',
+      audience: 'Group / Individual',
+      image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&q=80&auto=format&fit=crop',
+      status: 'upcoming',
+      startDate: '....',
+      startTime: '....',
+      endTime: '....',
+      progress: 0,
+      topics: ['Stage Presence', 'Storytelling Techniques', 'Audience Engagement', 'Voice Modulation']
+    },
+    {
+      id: 2,
+      title: 'Cybersecurity Workshop',
+      desc: '',
+      duration: '',
+      audience: '',
+      image: 'photos%20&%20video%20&%20icons/WhatsApp Image 2026-04-21 at 2.17.19 PM.jpeg',
+      status: 'photo-only',
+      startDate: '',
+      progress: 100,
+      topics: []
+    },
+    {
+      id: 3,
+      title: 'Confidence Workshop',
+      desc: '',
+      duration: '',
+      audience: '',
+      image: 'photos%20&%20video%20&%20icons/WhatsApp Image 2026-04-11 at 1.46.46 AM.jpeg',
+      status: 'photo-only',
+      startDate: '',
+      progress: 100,
+      topics: []
+    }
+    // Photo-only workshops 4-13 (empty data - rendered via HTML)
+    // Add more if needed: , {id:4, title:'', desc:'', image:'...', status:'photo-only'...}
+  ];
+
+  let enrolledWorkshops = JSON.parse(localStorage.getItem('enrolledWorkshops')) || [];
+
+  function getWorkshopStatus(id) {
+    return enrolledWorkshops.includes(id) ? 'enrolled' : workshopsData[id-1].status;
+  }
+
+  function openEnrollmentForm(id) {
+    const googleForm = 'https://forms.gle/KfuT1CvqUAb7iVo29';
+    window.open(googleForm, '_blank');
+  }
+
+  let currentEnrollId = 1;
+
+async function submitEnrollment() {
+    const name = document.getElementById('enroll-name').value.trim();
+    const email = document.getElementById('enroll-email').value.trim();
+    const phone = document.getElementById('enroll-phone').value.trim();
+    const btn = event.target;
+    if (!name || !email || !phone) {
+      showToast('Please fill all fields!', 'error');
+      return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const params = {
+      from_name: name,
+      from_email: email,
+      phone: phone,
+      workshop: `Workshop ${currentEnrollId}`,
+      message: 'New workshop enrollment'
+    };
+
+    const sent = await sendNotification(params);
+    if (sent) {
+      showToast('Enrollment successful! Email sent to Himanshu. 📧');
+      enrolledWorkshops.push(currentEnrollId);
+      localStorage.setItem('enrolledWorkshops', JSON.stringify(enrolledWorkshops));
+      document.getElementById('enrollModal').classList.remove('open');
+      // Clear form
+      document.getElementById('enroll-name').value = '';
+      document.getElementById('enroll-email').value = '';
+      document.getElementById('enroll-phone').value = '';
+      document.querySelectorAll('input[name="workshop-mode"]').forEach(r => r.checked = false);
+    } else {
+      showToast('Enrollment saved locally, but email failed. Contact directly if needed.', 'error');
+    }
+    initWorkshops();
+    btn.textContent = 'Complete Enrollment';
+    btn.disabled = false;
+  }
+
+  function closeEnrollModal() {
+    document.getElementById('enrollModal').classList.remove('open');
+  }
+
+  function formatCountdown(targetDate) {
+    const now = new Date().getTime();
+    const distance = new Date(targetDate).getTime() - now;
+    if (distance < 0) return 'Expired';
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    
+    return `${days}d ${hours}h ${minutes}m`;
+  }
+
+  function updateCountdowns() {
+    document.querySelectorAll('.countdown-timer').forEach(timer => {
+      const id = parseInt(timer.dataset.workshopId);
+      const workshop = workshopsData[id-1];
+      if (workshop.status === 'upcoming') {
+        timer.textContent = formatCountdown(workshop.startDate);
+      }
+    });
+  }
+
+  // #1 Workshop Timer/Badge Logic
+  const workshop1Start = new Date('2024-12-10T19:00:00').getTime(); // Demo: Tomorrow 7PM IST
+  const workshop1End = new Date('2024-12-10T21:00:00').getTime(); // 9PM IST
+  
+  function updateWorkshop1Status() {
+    const now = Date.now();
+    const statusEl = document.getElementById('workshop1-status');
+    const timerEl = document.getElementById('workshop1-timer');
+      const actionEl = document.querySelector('[data-workshop-id="1"] .workshop-action');
+      
+      if (now < workshop1Start) {
+        // Upcoming
+
+      statusEl.innerHTML = '🕐 Upcoming';
+      statusEl.style.background = 'rgba(201,168,76,0.2)';
+      const timeLeft = workshop1Start - now;
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      timerEl.innerHTML = `Starts in ${days}d ${hours}h ${minutes}m<br><small>Dec 10 • 7PM - 9PM IST</small>`;
+      actionEl.innerHTML = '<button class="btn-primary enroll-btn" onclick="openEnrollmentForm(1)" style="width:100%; margin-top:12px;">Enroll Now</button>';
+    } else if (now < workshop1End) {
+      // Live
+      statusEl.innerHTML = '● <span style="color:#ff4444">Live</span>';
+      statusEl.style.background = 'rgba(255,68,68,0.3)';
+      const timeLeft = workshop1End - now;
+      const mins = Math.floor(timeLeft / (1000 * 60));
+      timerEl.innerHTML = `Ends in ${mins}min<br><small>Live Now - Dec 10 • 7PM - 9PM</small>`;
+      actionEl.innerHTML = '<button class="btn-primary enroll-btn" onclick="openEnrollmentForm(1)" style="width:100%; margin-top:12px;">Join Live</button>';
+    } else {
+      // Ended
+      statusEl.innerHTML = '✅ Ended';
+      statusEl.style.background = 'rgba(76,184,141,0.3)';
+      timerEl.innerHTML = '<small>Workshop Completed - Dec 10, 7PM-9PM IST</small>';
+      actionEl.innerHTML = '<button class="btn-primary" onclick="openEnrollmentForm(1)" style="width:100%; margin-top:12px; background:linear-gradient(135deg,#4CB88D,#3A9A73);">View Recording</button>';
+    }
+  }
+
+  // Update every minute + immediate
+  setInterval(updateWorkshop1Status, 60000);
+  setTimeout(updateWorkshop1Status, 100);
+
+  // Original workshops init (only for other cards if needed)
+  function initWorkshops() {
+    workshopsData.forEach(workshop => {
+      const id = workshop.id;
+      const tag = document.getElementById(`workshop${id}-status`);
+      const action = document.querySelector(`.workshop-card[data-workshop-id="${id}"] .workshop-action`);
+      const meta = document.getElementById(`workshop${id}-timer`);
+
+      if (!action || !meta) return;
+
+      let status = workshop.status;
+      if (id === 1) {
+        // Calculate status based on time
+        const startDate = new Date(workshop.startDate);
+        const [startHour, startMin, startPeriod] = workshop.startTime.match(/(\d+):(\d+)\s*(AM|PM)/).slice(1);
+        let hour = parseInt(startHour);
+        if (startPeriod === 'PM' && hour !== 12) hour += 12;
+        if (startPeriod === 'AM' && hour === 12) hour = 0;
+        startDate.setHours(hour, parseInt(startMin));
+
+        const endDate = new Date(startDate);
+        const [endHour, endMin, endPeriod] = workshop.endTime.match(/(\d+):(\d+)\s*(AM|PM)/).slice(1);
+        hour = parseInt(endHour);
+        if (endPeriod === 'PM' && hour !== 12) hour += 12;
+        if (endPeriod === 'AM' && hour === 12) hour = 0;
+        endDate.setHours(hour, parseInt(endMin));
+
+        // Set the overlay text
+        document.getElementById('workshop1-date').innerHTML = startDate.toDateString();
+        document.getElementById('workshop1-start').innerHTML = workshop.startTime;
+        document.getElementById('workshop1-end').innerHTML = workshop.endTime;
+
+        const now = new Date();
+        if (now < startDate) {
+          status = 'upcoming';
+        } else if (now < endDate) {
+          status = 'live';
+        } else {
+          status = 'ended';
+        }
+
+        if (status === 'upcoming') {
+          meta.innerHTML = `Upcoming on ${startDate.toDateString()} at ${workshop.startTime} - ${workshop.endTime}`;
+          action.innerHTML = `<button class="btn-primary enroll-btn" onclick="openEnrollmentForm(${id})">Enroll Now</button>`;
+        } else if (status === 'live') {
+          meta.innerHTML = `<span style="color: red; font-size: 1.2em;">●</span> Live`;
+          action.innerHTML = `<button class="btn-primary" style="background: red;">Join Live</button>`;
+        } else {
+          meta.innerHTML = `Workshop Ended`;
+          action.innerHTML = `<button class="btn-primary" onclick="openFeedback()">Give Feedback</button>`;
+        }
+        return; // Skip the rest for id 1
+      }
+
+      if (!tag) return; // For other ids, if no tag, skip
+
+      if (id > 1 && workshop.status === 'completed') {
+        tag.textContent = 'Completed';
+        tag.style.background = 'rgba(76, 184, 141, 0.2)';
+        tag.style.color = '#4CB88D';
+        tag.style.borderColor = 'rgba(76, 184, 141, 0.4)';
+        action.innerHTML = `
+          <div style="margin-top: 12px;">
+            <small style="color: var(--gold); font-weight: 600;">Completed on ${workshop.completionDate}</small>
+            <div class="progress-container" style="background: var(--dark3); border-radius: 8px; height: 6px; margin: 8px 0; overflow: hidden;">
+              <div class="progress-bar" style="width: 100%;"></div>
+            </div>
+          </div>`;
+      } else if (status === 'enrolled') {
+        action.innerHTML = `
+          <div class="enrolled-details" style="margin-top: 12px;">
+            <div class="progress-container" style="background: var(--dark3); border-radius: 8px; height: 6px; margin-bottom: 6px; overflow: hidden;">
+              <div class="progress-bar" style="height: 100%; background: linear-gradient(90deg, var(--gold), #4CB88D); transition: width 0.5s ease; width: ${workshop.progress}%"></div>
+            </div>
+            <small style="color: var(--muted); font-size: 0.75rem;">Progress: ${workshop.progress}% Complete</small>
+            <button class="btn-primary" onclick="openEnrollmentForm(${id})" style="margin-top: 10px; font-size: 0.82rem; padding: 8px 20px;">View Details</button>
+          </div>`;
+      } else {
+        action.innerHTML = `
+          <button class="btn-primary enroll-btn" onclick="openEnrollmentForm(${id})" style="margin-top: 12px;">Enroll Now</button>
+          <div class="countdown-container" style="margin-top: 12px; display: ${workshop.status === 'upcoming' ? 'flex' : 'none'}; align-items: center; gap: 8px; font-weight: 500;">
+            <small style="color: var(--gold);">Starts in:</small>
+            <span class="countdown-timer" data-workshop-id="${id}" style="background: rgba(201,168,76,0.1); border-radius: 20px; padding: 6px 12px; font-size: 0.85rem;"></span>
+          </div>`;
+        if (workshop.status === 'upcoming') {
+          setTimeout(updateCountdowns, 100);
+        }
+      }
+
+      meta.innerHTML = `🕐 <span>${workshop.duration}</span>`;
+    });
+  }
+
+
+  // Scroll reveal
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Load feedbacks & render on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    renderFeedbacks();
+    initWorkshops();
+    setInterval(updateCountdowns, 60000);
+  });
+
+</script>
+</body>
+</html>
