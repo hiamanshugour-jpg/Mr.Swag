@@ -1414,7 +1414,7 @@ My workshops are designed to help you overcome fear, express yourself boldly, an
         <span id="rating-label" style="margin-left:10px; font-size:0.85rem; color:#8A8799; font-weight:500;">Tap a star</span>
       </div>
     </div>
-    <button class="btn-primary" style="width:100%;" onclick="submitFeedback()">Submit Feedback</button>
+    <button id="feedback-submit-btn" class="btn-primary" style="width:100%;" onclick="submitFeedback()">Submit Feedback</button>
   </div>
 </div>
 
@@ -1650,11 +1650,11 @@ await emailjs.send("service_4s17a0c", "template_8s6c8vb", templateParams);
   document.addEventListener('DOMContentLoaded', initStars);
   setTimeout(initStars, 100);
 
-  async function submitFeedback() {
+  window.submitFeedback = async function() {
     const name = document.getElementById('fb-name').value.trim();
     const email = document.getElementById('fb-email').value.trim();
     const text = document.getElementById('fb-text').value.trim();
-    const btn = event.target;
+    const btn = document.getElementById('feedback-submit-btn');
 
     if (!name) { showToast('Please enter your name!'); return; }
     if (!email) { showToast('Please enter your email!'); return; }
