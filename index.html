@@ -1606,16 +1606,16 @@ await emailjs.send("service_4s17a0c", "template_8s6c8vb", templateParams);
     setInterval(loadFeedbacksFromFirebase, 10000);
   });
 
-  function openFeedback() {
+  window.openFeedback = function() {
     document.getElementById('feedbackModal').classList.add('open');
     // reset stars display
     updateStarDisplay(0);
-  }
-  function closeFeedback() {
+  };
+  window.closeFeedback = function() {
     document.getElementById('feedbackModal').classList.remove('open');
-  }
+  };
   document.getElementById('feedbackModal').addEventListener('click', e => {
-    if (e.target === e.currentTarget) closeFeedback();
+    if (e.target === e.currentTarget) window.closeFeedback();
   });
 
   function updateStarDisplay(val) {
