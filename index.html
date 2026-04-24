@@ -6,10 +6,6 @@
 <title>Himanshu Gour – Public Speaker</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  
-  <!-- Firebase Library -->
-  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js"></script>
 
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1462,29 +1458,37 @@ My workshops are designed to help you overcome fear, express yourself boldly, an
   </section>
 </div>
 
-<script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getDatabase, ref, push, onValue, query, orderByChild } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
   // EmailJS Setup - REPLACE WITH YOUR CREDENTIALS from TODO.md
-emailjs.init("1-chWiP42nNOfajho"); // LIVE
+  emailjs.init("1-chWiP42nNOfajho"); // LIVE
 
   // Firebase Setup - UPDATE WITH YOUR CREDENTIALS
   const firebaseConfig = {
-    apiKey: "AIzaSyDemoKey123456789", // Replace with your Firebase API Key
-    authDomain: "himanshu-gour-website.firebaseapp.com", // Replace with your domain
-    databaseURL: "https://himanshu-gour-website-default-rtdb.asia-south1.firebase.io", // Replace with your DB URL
-    projectId: "himanshu-gour-website", // Replace with your project ID
-    storageBucket: "himanshu-gour-website.appspot.com",
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abc123def456"
+    apiKey: "AIzaSyBbEiMgF8bDN9gIx-QQrFeC7dJ0D0OmCL4",
+    authDomain: "himanshu-gour.firebaseapp.com",
+    databaseURL: "https://himanshu-gour-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "himanshu-gour",
+    storageBucket: "himanshu-gour.firebasestorage.app",
+    messagingSenderId: "231019902373",
+    appId: "1:231019902373:web:9e1e4d3dd8824d96e0e44c",
+    measurementId: "G-27QD2P83WK"
   };
 
-  // Initialize Firebase
-  try {
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    console.log('Firebase initialized successfully');
-  } catch(err) {
-    console.log('Firebase init error (will use local storage):', err);
-  }
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  window.sendFeedback = function(name, message) {
+    push(ref(db, 'feedbacks/'), {
+      name,
+      text: message,
+      rating: 0,
+      date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+      timestamp: Date.now()
+    });
+  };
 
   // Helper: Show toast message
   function showToast(message, type = 'success') {
@@ -1684,7 +1688,7 @@ await emailjs.send("service_4s17a0c", "template_8s6c8vb", templateParams);
     
     try {
       if (typeof db !== 'undefined' && db) {
-        await db.ref('feedbacks').push(fb);
+        await push(ref(db, 'feedbacks/'), fb);
         loadFeedbacksFromFirebase(); // Reload to show new feedback
       } else {
         // Fallback to localStorage if Firebase not configured
@@ -1726,7 +1730,7 @@ await emailjs.send("service_4s17a0c", "template_8s6c8vb", templateParams);
         return;
       }
       
-      db.ref('feedbacks').orderByChild('timestamp').once('value', (snapshot) => {
+      onValue(query(ref(db, 'feedbacks/'), orderByChild('timestamp')), (snapshot) => {
         feedbacks = [];
         const data = snapshot.val();
         if (data) {
